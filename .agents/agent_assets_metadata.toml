@@ -1,0 +1,50 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "ytmhJAoJD6GuVjRa4ko6g"
+uri = "file://artifacts/engineer-portal/public/images/hero-bg.png"
+type = "image"
+title = "Hero abstract background"
+
+[[generated]]
+id = "_zB87dhlSOtMLU532oHD4"
+uri = "file://artifacts/engineer-portal/public/images/mediai-dashboard.png"
+type = "image"
+title = "MediAI Dashboard Mockup"
+
+[[generated]]
+id = "MjXePUESO-tPuBayYWE1B"
+uri = "file://artifacts/engineer-portal/public/images/mediai-symptom.png"
+type = "image"
+title = "MediAI Symptom Checker"
+
+[[generated]]
+id = "cAPNGwY_YPBMRVwT-tfQk"
+uri = "file://artifacts/engineer-portal/public/images/mediai-multilingual.png"
+type = "image"
+title = "MediAI Multilingual Interface"
+
+[[generated]]
+id = "kpRocNoMKa4YF8UYSJqvS"
+uri = "file://artifacts/engineer-portal/public/images/tech-ai.png"
+type = "image"
+title = "AI Integration Abstract"
+
+[[generated]]
+id = "GnQTHDNiSh0WT02Klr6wP"
+uri = "file://artifacts/engineer-portal/public/images/tech-multilingual.png"
+type = "image"
+title = "Multilingual Systems Abstract"
+
+[[generated]]
+id = "Ruhqa1BHJ2eisixzqBIdS"
+uri = "file://artifacts/engineer-portal/public/images/tech-mobile.png"
+type = "image"
+title = "Mobile App Mockup"
+
+[[generated]]
+id = "i9ydITtdIjj8ttDgNZpZv"
+uri = "file://artifacts/engineer-portal/public/images/portrait-abstract.png"
+type = "image"
+title = "Portrait Abstraction"

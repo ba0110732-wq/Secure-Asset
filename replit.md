@@ -1,27 +1,26 @@
-# Workspace
+# Eng. Abdulrazzaq Najib Al-Najjar — Portfolio
 
 ## Overview
 
-pnpm workspace monorepo using TypeScript. Each package manages its own dependencies.
+A single integrated portfolio + showcase website for **Eng. Abdulrazzaq Najib Al-Najjar (المهندس عبدالرزاق نجيب النجار)**. Built as a single deployable project with no backend split — designed for one-click deployment to Vercel.
 
 ## Stack
 
-- **Monorepo tool**: pnpm workspaces
-- **Node.js version**: 24
-- **Package manager**: pnpm
-- **TypeScript version**: 5.9
-- **API framework**: Express 5
-- **Database**: PostgreSQL + Drizzle ORM
-- **Validation**: Zod (`zod/v4`), `drizzle-zod`
-- **API codegen**: Orval (from OpenAPI spec)
-- **Build**: esbuild (CJS bundle)
+- **Monorepo**: pnpm workspaces
+- **Frontend**: React 19 + Vite + TypeScript + Tailwind 4 + Framer Motion
+- **Routing**: wouter
+- **Bilingual**: English + Arabic (RTL)
+- **Deploy target**: Vercel (single project) — see `DEPLOY.md`
+
+## Structure
+
+- `artifacts/engineer-portal/` — the portfolio website (the only artifact users see)
+- `artifacts/api-server/` — scaffolded API server (not used by the portfolio; safe to ignore for deployment)
+- `artifacts/mockup-sandbox/` — design sandbox (not used by the portfolio)
+
+The Vercel build only ships `artifacts/engineer-portal` — see `vercel.json`.
 
 ## Key Commands
 
-- `pnpm run typecheck` — full typecheck across all packages
-- `pnpm run build` — typecheck + build all packages
-- `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- `pnpm --filter @workspace/api-server run dev` — run API server locally
-
-See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details.
+- `pnpm --filter @workspace/engineer-portal run dev` — run the portfolio locally
+- `pnpm --filter @workspace/engineer-portal run build` — build for production

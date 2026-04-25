@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "pnpm install --frozen-lockfile=false && pnpm --filter @workspace/engineer-portal build",
+  "outputDirectory": "artifacts/engineer-portal/dist",
+  "installCommand": "npm install -g pnpm@9 && pnpm install --frozen-lockfile=false",
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/((?!assets|favicon\\.svg|robots\\.txt|sitemap\\.xml|.*\\..*).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

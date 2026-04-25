@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Cairo:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-border: hsl(var(--card-border));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-popover-border: hsl(var(--popover-border));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-border: var(--primary-border);
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-secondary-border: var(--secondary-border);
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-muted-border: var(--muted-border);
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent-border: var(--accent-border);
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-destructive-border: var(--destructive-border);
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --font-sans: var(--app-font-sans);
+  --font-arabic: var(--app-font-arabic);
+  --font-display: var(--app-font-display);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --button-outline: rgba(255,255,255, .10);
+  --badge-outline: rgba(255,255,255, .05);
+
+  --opaque-button-border-intensity: 9;
+
+  --elevate-1: rgba(255,255,255, .04);
+  --elevate-2: rgba(255,255,255, .09);
+
+  /* Deep Teal and Amber / Gold */
+  /* We enforce dark mode everywhere, but these are defaults just in case */
+  --background: 180 50% 4%; /* #050F0F */
+  --foreground: 180 20% 95%; /* Very light teal-tinted white */
+
+  --border: 180 30% 15%;
+  
+  --card: 180 45% 6%;
+  --card-foreground: 180 20% 95%;
+  --card-border: 180 30% 15%;
+
+  --popover: 180 45% 6%;
+  --popover-foreground: 180 20% 95%;
+  --popover-border: 180 30% 15%;
+
+  --primary: 43 90% 55%; /* Rich Gold/Amber */
+  --primary-foreground: 180 50% 4%;
+  
+  --secondary: 175 70% 30%; /* Emerald/Teal */
+  --secondary-foreground: 180 20% 95%;
+
+  --muted: 180 30% 12%;
+  --muted-foreground: 180 15% 70%;
+
+  --accent: 175 70% 30%;
+  --accent-foreground: 180 20% 95%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 210 40% 98%;
+
+  --input: 180 30% 15%;
+  --ring: 43 90% 55%;
+  
+  --chart-1: 43 90% 55%; /* Gold */
+  --chart-2: 175 70% 30%; /* Emerald */
+  --chart-3: 180 40% 20%; /* Darker Teal */
+  --chart-4: 35 90% 65%; /* Lighter Amber */
+  --chart-5: 160 60% 40%; /* Bright Green/Teal */
+
+  --app-font-sans: 'Inter', sans-serif;
+  --app-font-arabic: 'Cairo', sans-serif;
+  --app-font-display: 'Outfit', sans-serif;
+  
+  --radius: 0.75rem;
+  
+  --sidebar-primary-border: hsl(from hsl(var(--primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --sidebar-accent-border: hsl(from hsl(var(--accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --primary-border: hsl(from hsl(var(--primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --secondary-border: hsl(from hsl(var(--secondary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --muted-border: hsl(from hsl(var(--muted)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --accent-border: hsl(from hsl(var(--accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+}
+
+.dark {
+  /* Redefining identical values just to be sure we're in dark mode */
+  --background: 180 50% 4%; /* #050F0F */
+  --foreground: 180 20% 95%;
+
+  --border: 180 30% 15%;
+  
+  --card: 180 45% 6%;
+  --card-foreground: 180 20% 95%;
+  --card-border: 180 30% 15%;
+
+  --popover: 180 45% 6%;
+  --popover-foreground: 180 20% 95%;
+  --popover-border: 180 30% 15%;
+
+  --primary: 43 90% 55%; 
+  --primary-foreground: 180 50% 4%;
+  
+  --secondary: 175 70% 30%; 
+  --secondary-foreground: 180 20% 95%;
+
+  --muted: 180 30% 12%;
+  --muted-foreground: 180 15% 70%;
+
+  --accent: 175 70% 30%;
+  --accent-foreground: 180 20% 95%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 210 40% 98%;
+
+  --input: 180 30% 15%;
+  --ring: 43 90% 55%;
+  
+  --chart-1: 43 90% 55%;
+  --chart-2: 175 70% 30%;
+  --chart-3: 180 40% 20%;
+  --chart-4: 35 90% 65%;
+  --chart-5: 160 60% 40%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground selection:bg-primary/30 selection:text-primary-foreground;
+  }
+  
+  html[dir="rtl"] body {
+    @apply font-arabic;
+  }
+
+  /* Typography utilities for English vs Arabic */
+  .font-display {
+    font-family: var(--app-font-display);
+  }
+  
+  html[dir="rtl"] .font-display {
+    font-family: var(--app-font-arabic);
+    font-weight: 700;
+  }
+  
+  .font-body {
+    font-family: var(--app-font-sans);
+  }
+  
+  html[dir="rtl"] .font-body {
+    font-family: var(--app-font-arabic);
+  }
+}
+
+.bg-mesh {
+  background-color: hsl(var(--background));
+  background-image: 
+    radial-gradient(at 40% 20%, hsla(175, 70%, 20%, 0.15) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, hsla(43, 90%, 30%, 0.1) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, hsla(180, 50%, 15%, 0.15) 0px, transparent 50%);
+}
+
+.glass-panel {
+  background: rgba(10, 25, 25, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(90deg, hsl(180, 20%, 95%), hsl(175, 50%, 70%));
+}
+
+.text-gradient-gold {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(90deg, hsl(43, 90%, 65%), hsl(35, 90%, 55%));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar for clean look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
+
+@layer utilities {
+  input[type="search"]::-webkit-search-cancel-button {
+    @apply hidden;
+  }
+  [contenteditable][data-placeholder]:empty::before {
+    content: attr(data-placeholder);
+    color: hsl(var(--muted-foreground));
+    pointer-events: none;
+  }
+}
