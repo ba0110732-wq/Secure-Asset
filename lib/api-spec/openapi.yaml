@@ -1,36 +1,505 @@
 openapi: 3.1.0
 info:
-  # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: MediAI Health Intelligence API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
-    description: Health operations
+  - name: dashboard
+  - name: symptoms
+  - name: drugs
+  - name: consultations
+  - name: vitals
+  - name: profile
 paths:
   /healthz:
     get:
       operationId: healthCheck
       tags: [health]
-      summary: Health check
-      description: Returns server health status
       responses:
         "200":
           description: Healthy
           content:
             application/json:
+              schema: { $ref: "#/components/schemas/HealthStatus" }
+
+  /dashboard/summary:
+    get:
+      operationId: getDashboardSummary
+      tags: [dashboard]
+      responses:
+        "200":
+          description: Dashboard summary
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/DashboardSummary" }
+
+  /dashboard/activity:
+    get:
+      operationId: getRecentActivity
+      tags: [dashboard]
+      responses:
+        "200":
+          description: Recent activity
+          content:
+            application/json:
               schema:
-                $ref: "#/components/schemas/HealthStatus"
+                type: array
+                items: { $ref: "#/components/schemas/ActivityItem" }
+
+  /dashboard/health-tip:
+    get:
+      operationId: getHealthTip
+      tags: [dashboard]
+      responses:
+        "200":
+          description: Health tip
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/HealthTip" }
+
+  /symptoms:
+    get:
+      operationId: listSymptomChecks
+      tags: [symptoms]
+      responses:
+        "200":
+          description: List
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/SymptomCheck" }
+    post:
+      operationId: createSymptomCheck
+      tags: [symptoms]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CreateSymptomCheckBody" }
+      responses:
+        "200":
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/SymptomCheck" }
+
+  /symptoms/{id}:
+    get:
+      operationId: getSymptomCheck
+      tags: [symptoms]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: One
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/SymptomCheck" }
+
+  /drugs:
+    get:
+      operationId: listDrugChecks
+      tags: [drugs]
+      responses:
+        "200":
+          description: List
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/DrugCheck" }
+    post:
+      operationId: createDrugCheck
+      tags: [drugs]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CreateDrugCheckBody" }
+      responses:
+        "200":
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/DrugCheck" }
+
+  /drugs/{id}:
+    get:
+      operationId: getDrugCheck
+      tags: [drugs]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: One
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/DrugCheck" }
+
+  /consultations:
+    get:
+      operationId: listConsultations
+      tags: [consultations]
+      responses:
+        "200":
+          description: List
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Consultation" }
+    post:
+      operationId: createConsultation
+      tags: [consultations]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CreateConsultationBody" }
+      responses:
+        "200":
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Consultation" }
+
+  /consultations/{id}:
+    get:
+      operationId: getConsultation
+      tags: [consultations]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: One
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Consultation" }
+
+  /consultations/{id}/messages:
+    post:
+      operationId: postConsultationMessage
+      tags: [consultations]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/PostMessageBody" }
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Consultation" }
+
+  /vitals:
+    get:
+      operationId: listVitals
+      tags: [vitals]
+      responses:
+        "200":
+          description: List
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/VitalRecord" }
+    post:
+      operationId: createVital
+      tags: [vitals]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CreateVitalBody" }
+      responses:
+        "200":
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/VitalRecord" }
+
+  /vitals/latest:
+    get:
+      operationId: getLatestVitals
+      tags: [vitals]
+      responses:
+        "200":
+          description: Latest
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - { $ref: "#/components/schemas/VitalRecord" }
+                  - { type: "null" }
+
+  /profile:
+    get:
+      operationId: getProfile
+      tags: [profile]
+      responses:
+        "200":
+          description: Profile
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/HealthProfile" }
+    put:
+      operationId: updateProfile
+      tags: [profile]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/UpdateProfileBody" }
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/HealthProfile" }
+
 components:
   schemas:
     HealthStatus:
       type: object
+      required: [status]
       properties:
-        status:
-          type: string
-      required:
-        - status
+        status: { type: string }
 
+    DashboardSummary:
+      type: object
+      required: [consultations, symptomChecks, drugChecks, vitalRecords]
+      properties:
+        consultations: { type: integer }
+        symptomChecks: { type: integer }
+        drugChecks: { type: integer }
+        vitalRecords: { type: integer }
+        lastVitalAt:
+          anyOf:
+            - { type: string, format: date-time }
+            - { type: "null" }
+
+    ActivityItem:
+      type: object
+      required: [id, kind, title, subtitle, createdAt]
+      properties:
+        id: { type: string }
+        kind:
+          type: string
+          enum: [symptom, drug, consultation, vital]
+        title: { type: string }
+        subtitle: { type: string }
+        severity:
+          anyOf:
+            - { type: string, enum: [low, medium, high] }
+            - { type: "null" }
+        createdAt: { type: string, format: date-time }
+
+    HealthTip:
+      type: object
+      required: [tip, tipAr]
+      properties:
+        tip: { type: string }
+        tipAr: { type: string }
+
+    SymptomCheck:
+      type: object
+      required: [id, symptoms, analysis, severity, createdAt]
+      properties:
+        id: { type: integer }
+        symptoms: { type: string }
+        analysis: { type: string }
+        severity:
+          type: string
+          enum: [low, medium, high]
+        recommendations:
+          type: array
+          items: { type: string }
+        createdAt: { type: string, format: date-time }
+
+    CreateSymptomCheckBody:
+      type: object
+      required: [symptoms]
+      properties:
+        symptoms: { type: string }
+        language: { type: string, enum: [en, ar, fr, es, zh, hi], default: en }
+
+    DrugCheck:
+      type: object
+      required: [id, drugs, analysis, riskLevel, createdAt]
+      properties:
+        id: { type: integer }
+        drugs:
+          type: array
+          items: { type: string }
+        analysis: { type: string }
+        riskLevel:
+          type: string
+          enum: [none, low, moderate, high]
+        interactions:
+          type: array
+          items:
+            type: object
+            required: [drugA, drugB, description, severity]
+            properties:
+              drugA: { type: string }
+              drugB: { type: string }
+              description: { type: string }
+              severity: { type: string, enum: [low, moderate, high] }
+        createdAt: { type: string, format: date-time }
+
+    CreateDrugCheckBody:
+      type: object
+      required: [drugs]
+      properties:
+        drugs:
+          type: array
+          items: { type: string }
+          minItems: 1
+        language: { type: string, enum: [en, ar, fr, es, zh, hi], default: en }
+
+    ConsultationMessage:
+      type: object
+      required: [role, content, createdAt]
+      properties:
+        role: { type: string, enum: [user, assistant] }
+        content: { type: string }
+        createdAt: { type: string, format: date-time }
+
+    Consultation:
+      type: object
+      required: [id, title, messages, createdAt, updatedAt]
+      properties:
+        id: { type: integer }
+        title: { type: string }
+        messages:
+          type: array
+          items: { $ref: "#/components/schemas/ConsultationMessage" }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+
+    CreateConsultationBody:
+      type: object
+      required: [message]
+      properties:
+        message: { type: string }
+        language: { type: string, enum: [en, ar, fr, es, zh, hi], default: en }
+
+    PostMessageBody:
+      type: object
+      required: [message]
+      properties:
+        message: { type: string }
+        language: { type: string, enum: [en, ar, fr, es, zh, hi], default: en }
+
+    VitalRecord:
+      type: object
+      required: [id, createdAt]
+      properties:
+        id: { type: integer }
+        heartRate:
+          anyOf: [{ type: integer }, { type: "null" }]
+        systolic:
+          anyOf: [{ type: integer }, { type: "null" }]
+        diastolic:
+          anyOf: [{ type: integer }, { type: "null" }]
+        temperature:
+          anyOf: [{ type: number }, { type: "null" }]
+        oxygenSaturation:
+          anyOf: [{ type: integer }, { type: "null" }]
+        bloodSugar:
+          anyOf: [{ type: number }, { type: "null" }]
+        weight:
+          anyOf: [{ type: number }, { type: "null" }]
+        notes:
+          anyOf: [{ type: string }, { type: "null" }]
+        createdAt: { type: string, format: date-time }
+
+    CreateVitalBody:
+      type: object
+      properties:
+        heartRate:
+          anyOf: [{ type: integer }, { type: "null" }]
+        systolic:
+          anyOf: [{ type: integer }, { type: "null" }]
+        diastolic:
+          anyOf: [{ type: integer }, { type: "null" }]
+        temperature:
+          anyOf: [{ type: number }, { type: "null" }]
+        oxygenSaturation:
+          anyOf: [{ type: integer }, { type: "null" }]
+        bloodSugar:
+          anyOf: [{ type: number }, { type: "null" }]
+        weight:
+          anyOf: [{ type: number }, { type: "null" }]
+        notes:
+          anyOf: [{ type: string }, { type: "null" }]
+
+    HealthProfile:
+      type: object
+      required: [id]
+      properties:
+        id: { type: integer }
+        fullName:
+          anyOf: [{ type: string }, { type: "null" }]
+        age:
+          anyOf: [{ type: integer }, { type: "null" }]
+        gender:
+          anyOf:
+            - { type: string, enum: [male, female, other] }
+            - { type: "null" }
+        height:
+          anyOf: [{ type: number }, { type: "null" }]
+        weight:
+          anyOf: [{ type: number }, { type: "null" }]
+        bloodType:
+          anyOf: [{ type: string }, { type: "null" }]
+        allergies:
+          anyOf: [{ type: string }, { type: "null" }]
+        chronicConditions:
+          anyOf: [{ type: string }, { type: "null" }]
+        currentMedications:
+          anyOf: [{ type: string }, { type: "null" }]
+
+    UpdateProfileBody:
+      type: object
+      properties:
+        fullName:
+          anyOf: [{ type: string }, { type: "null" }]
+        age:
+          anyOf: [{ type: integer }, { type: "null" }]
+        gender:
+          anyOf:
+            - { type: string, enum: [male, female, other] }
+            - { type: "null" }
+        height:
+          anyOf: [{ type: number }, { type: "null" }]
+        weight:
+          anyOf: [{ type: number }, { type: "null" }]
+        bloodType:
+          anyOf: [{ type: string }, { type: "null" }]
+        allergies:
+          anyOf: [{ type: string }, { type: "null" }]
+        chronicConditions:
+          anyOf: [{ type: string }, { type: "null" }]
+        currentMedications:
+          anyOf: [{ type: string }, { type: "null" }]
