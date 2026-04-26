@@ -4,9 +4,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as SonnerToaster } from "sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { I18nProvider } from "@/lib/i18n";
-import Home from "@/pages/home";
-import MediAI from "@/pages/mediai";
 
+import Landing from "@/pages/landing";
 import { Layout as MediAILayout } from "@/components/medai/Layout";
 import Dashboard from "@/pages/medai-app/dashboard";
 import Symptoms from "@/pages/medai-app/symptoms";
@@ -34,40 +33,37 @@ const queryClient = new QueryClient({
   },
 });
 
-function MediAIRoute({ children }: { children: React.ReactNode }) {
+function App({ children }: { children: React.ReactNode }) {
   return <MediAILayout>{children}</MediAILayout>;
 }
 
 function Router() {
   return (
     <Switch>
-      {/* Portfolio routes */}
-      <Route path="/" component={Home} />
-      <Route path="/medai" component={MediAI} />
+      <Route path="/" component={Landing} />
 
-      {/* MediAI app routes */}
-      <Route path="/app">{() => <MediAIRoute><Dashboard /></MediAIRoute>}</Route>
-      <Route path="/app/symptoms">{() => <MediAIRoute><Symptoms /></MediAIRoute>}</Route>
-      <Route path="/app/drugs">{() => <MediAIRoute><Drugs /></MediAIRoute>}</Route>
-      <Route path="/app/consultations">{() => <MediAIRoute><Consultations /></MediAIRoute>}</Route>
-      <Route path="/app/consultations/:id">{() => <MediAIRoute><Consultation /></MediAIRoute>}</Route>
-      <Route path="/app/vitals">{() => <MediAIRoute><Vitals /></MediAIRoute>}</Route>
-      <Route path="/app/profile">{() => <MediAIRoute><Profile /></MediAIRoute>}</Route>
-      <Route path="/app/blog">{() => <MediAIRoute><Blog /></MediAIRoute>}</Route>
-      <Route path="/app/blog/:slug">{() => <MediAIRoute><BlogPost /></MediAIRoute>}</Route>
-      <Route path="/app/community">{() => <MediAIRoute><Community /></MediAIRoute>}</Route>
-      <Route path="/app/community/:id">{() => <MediAIRoute><CommunityPost /></MediAIRoute>}</Route>
-      <Route path="/app/account">{() => <MediAIRoute><Account /></MediAIRoute>}</Route>
-      <Route path="/app/pricing">{() => <MediAIRoute><Pricing /></MediAIRoute>}</Route>
-      <Route path="/app/privacy">{() => <MediAIRoute><Privacy /></MediAIRoute>}</Route>
-      <Route path="/app/terms">{() => <MediAIRoute><Terms /></MediAIRoute>}</Route>
+      <Route path="/dashboard">{() => <App><Dashboard /></App>}</Route>
+      <Route path="/symptoms">{() => <App><Symptoms /></App>}</Route>
+      <Route path="/drugs">{() => <App><Drugs /></App>}</Route>
+      <Route path="/consultations">{() => <App><Consultations /></App>}</Route>
+      <Route path="/consultations/:id">{() => <App><Consultation /></App>}</Route>
+      <Route path="/vitals">{() => <App><Vitals /></App>}</Route>
+      <Route path="/profile">{() => <App><Profile /></App>}</Route>
+      <Route path="/blog">{() => <App><Blog /></App>}</Route>
+      <Route path="/blog/:slug">{() => <App><BlogPost /></App>}</Route>
+      <Route path="/community">{() => <App><Community /></App>}</Route>
+      <Route path="/community/:id">{() => <App><CommunityPost /></App>}</Route>
+      <Route path="/account">{() => <App><Account /></App>}</Route>
+      <Route path="/pricing">{() => <App><Pricing /></App>}</Route>
+      <Route path="/privacy">{() => <App><Privacy /></App>}</Route>
+      <Route path="/terms">{() => <App><Terms /></App>}</Route>
 
       <Route component={NotFound} />
     </Switch>
   );
 }
 
-function App() {
+function Root() {
   return (
     <QueryClientProvider client={queryClient}>
       <I18nProvider>
@@ -83,4 +79,4 @@ function App() {
   );
 }
 
-export default App;
+export default Root;

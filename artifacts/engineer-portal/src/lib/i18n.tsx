@@ -164,6 +164,50 @@ const en = {
 
   tryAgain: "Try again",
   posted: "Posted",
+
+  // Landing page
+  backToHome: "Back to Home",
+  "cta.launch": "Launch App",
+  "hero.badge": "AI-Powered Health Intelligence",
+  "hero.headline1": "Your Personal AI",
+  "hero.headline2": "Health Companion",
+  "hero.subtitle":
+    "MediAI uses advanced artificial intelligence to analyze symptoms, check drug interactions, track vitals, and deliver personalized health insights — in 6 languages, accessible from any device, anytime.",
+  "hero.cta.primary": "Get Started Free",
+  "hero.cta.secondary": "Try Symptom Checker",
+  "trust.ai": "Powered by GPT-class AI",
+  "trust.languages": "6 Languages Supported",
+  "trust.privacy": "Privacy-First Design",
+  "trust.realtime": "Real-Time Analysis",
+  "features.title": "Complete Medical Intelligence Suite",
+  "features.subtitle":
+    "Six powerful AI-driven tools to help you understand, track, and improve your health.",
+  "features.explore": "Explore",
+  "feature.symptoms.title": "AI Symptom Checker",
+  "feature.symptoms.desc":
+    "Describe how you feel and get an instant AI analysis with severity assessment and personalized recommendations.",
+  "feature.drugs.title": "Drug Interaction Analyzer",
+  "feature.drugs.desc":
+    "Add multiple medications and let our AI flag dangerous interactions, side effects, and safer alternatives.",
+  "feature.consultations.title": "AI Health Consultations",
+  "feature.consultations.desc":
+    "Have an interactive conversation with a medical AI assistant trained on extensive health knowledge.",
+  "feature.vitals.title": "Vital Signs Tracker",
+  "feature.vitals.desc":
+    "Log blood pressure, heart rate, glucose, and more. Visualize trends and catch issues early.",
+  "feature.profile.title": "Personal Health Profile",
+  "feature.profile.desc":
+    "Centralize your medical history, allergies, conditions, and medications in one secure place.",
+  "feature.blog.title": "Daily AI Health Articles",
+  "feature.blog.desc":
+    "Fresh, AI-curated articles on wellness, nutrition, mental health, and the latest medical research.",
+  "cta.title": "Ready to Take Control of Your Health?",
+  "cta.subtitle":
+    "Join MediAI today — free to start, no credit card required. Your personalized health intelligence platform awaits.",
+  "cta.button": "Open Dashboard",
+  "footer.product": "Product",
+  "footer.legal": "Legal",
+  "footer.rights": "All rights reserved.",
 };
 
 type Dict = typeof en;
@@ -319,6 +363,50 @@ const ar: Dict = {
 
   tryAgain: "أعد المحاولة",
   posted: "نُشر",
+
+  // Landing page
+  backToHome: "العودة للرئيسية",
+  "cta.launch": "افتح التطبيق",
+  "hero.badge": "ذكاء صحي مدعوم بالذكاء الاصطناعي",
+  "hero.headline1": "رفيقك الذكي",
+  "hero.headline2": "للرعاية الصحية الشخصية",
+  "hero.subtitle":
+    "يستخدم MediAI الذكاء الاصطناعي المتقدم لتحليل الأعراض، فحص تفاعلات الأدوية، تتبّع المؤشرات الحيوية، وتقديم رؤى صحية مخصصة — بست لغات، من أي جهاز، في أي وقت.",
+  "hero.cta.primary": "ابدأ مجاناً",
+  "hero.cta.secondary": "جرّب فاحص الأعراض",
+  "trust.ai": "مدعوم بذكاء اصطناعي متقدم",
+  "trust.languages": "يدعم 6 لغات",
+  "trust.privacy": "تصميم يحمي خصوصيتك",
+  "trust.realtime": "تحليل فوري",
+  "features.title": "منظومة طبية ذكية متكاملة",
+  "features.subtitle":
+    "ست أدوات قوية مدعومة بالذكاء الاصطناعي تساعدك على فهم صحتك وتتبّعها وتحسينها.",
+  "features.explore": "اكتشف",
+  "feature.symptoms.title": "فاحص الأعراض الذكي",
+  "feature.symptoms.desc":
+    "صف ما تشعر به واحصل على تحليل فوري بالذكاء الاصطناعي مع تقييم الخطورة وتوصيات مخصصة.",
+  "feature.drugs.title": "محلل تفاعلات الأدوية",
+  "feature.drugs.desc":
+    "أضف عدة أدوية ودع الذكاء الاصطناعي يكتشف التفاعلات الخطرة والأعراض الجانبية والبدائل الأكثر أماناً.",
+  "feature.consultations.title": "استشارات صحية ذكية",
+  "feature.consultations.desc":
+    "تحدث تفاعلياً مع مساعد طبي ذكي مدرّب على معرفة طبية واسعة.",
+  "feature.vitals.title": "تتبع المؤشرات الحيوية",
+  "feature.vitals.desc":
+    "سجّل ضغط الدم ومعدل النبض والسكر والمزيد. شاهد الاتجاهات واكتشف المشكلات مبكراً.",
+  "feature.profile.title": "ملفك الصحي الشخصي",
+  "feature.profile.desc":
+    "اجمع تاريخك الطبي والحساسيات والحالات والأدوية في مكان واحد آمن.",
+  "feature.blog.title": "مقالات صحية يومية بالذكاء الاصطناعي",
+  "feature.blog.desc":
+    "مقالات جديدة يومياً عن العافية والتغذية والصحة النفسية وأحدث الأبحاث الطبية.",
+  "cta.title": "جاهز للتحكم في صحتك؟",
+  "cta.subtitle":
+    "انضم لـ MediAI اليوم — مجاني تماماً، بدون بطاقة ائتمان. منصة الذكاء الصحي الشخصية في انتظارك.",
+  "cta.button": "افتح لوحة التحكم",
+  "footer.product": "المنتج",
+  "footer.legal": "القانوني",
+  "footer.rights": "جميع الحقوق محفوظة.",
 };
 
 const baseExtras = (overrides: Partial<Dict>): Dict => ({ ...en, ...overrides });

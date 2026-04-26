@@ -41,22 +41,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
   }, [location]);
 
   const navItems = [
-    { href: "/app", label: t("dashboard"), icon: Activity },
-    { href: "/app/symptoms", label: t("symptomChecker"), icon: Stethoscope },
-    { href: "/app/drugs", label: t("drugInteractions"), icon: Pill },
-    { href: "/app/consultations", label: t("consultations"), icon: MessageSquare },
-    { href: "/app/vitals", label: t("vitalSigns"), icon: HeartPulse },
-    { href: "/app/profile", label: t("healthProfile"), icon: User },
-    { href: "/app/blog", label: t("blog"), icon: Newspaper },
-    { href: "/app/community", label: t("community"), icon: Users },
-    { href: "/app/account", label: t("account"), icon: UserCircle },
-    { href: "/app/pricing", label: t("pricing"), icon: CreditCard },
+    { href: "/dashboard", label: t("dashboard"), icon: Activity },
+    { href: "/symptoms", label: t("symptomChecker"), icon: Stethoscope },
+    { href: "/drugs", label: t("drugInteractions"), icon: Pill },
+    { href: "/consultations", label: t("consultations"), icon: MessageSquare },
+    { href: "/vitals", label: t("vitalSigns"), icon: HeartPulse },
+    { href: "/profile", label: t("healthProfile"), icon: User },
+    { href: "/blog", label: t("blog"), icon: Newspaper },
+    { href: "/community", label: t("community"), icon: Users },
+    { href: "/account", label: t("account"), icon: UserCircle },
+    { href: "/pricing", label: t("pricing"), icon: CreditCard },
   ];
 
   const SidebarContent = () => (
     <div className="flex h-full flex-col bg-card">
       <div className="flex h-16 items-center justify-between px-6 border-b border-border/50">
-        <Link href="/app" className="flex items-center gap-2 font-semibold text-lg">
+        <Link href="/dashboard" className="flex items-center gap-2 font-semibold text-lg">
           <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-teal-400 to-emerald-600 flex items-center justify-center shadow-lg shadow-teal-500/30">
             <HeartPulse className="h-5 w-5 text-white" />
           </div>
@@ -76,7 +76,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           {navItems.map((item) => {
             const isActive =
               location === item.href ||
-              (item.href !== "/app" && location.startsWith(item.href));
+              (item.href !== "/dashboard" && location.startsWith(item.href));
             return (
               <Link key={item.href} href={item.href}>
                 <div
@@ -99,7 +99,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Link href="/">
           <div className="flex items-center gap-2 text-xs text-muted-foreground hover:text-amber-400 transition-colors cursor-pointer">
             <ArrowLeft className="h-3 w-3" />
-            {t("backToPortfolio")}
+            {t("backToHome")}
           </div>
         </Link>
         <p className="text-xs text-center text-muted-foreground pt-2 border-t border-border/30">
@@ -134,7 +134,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <SidebarContent />
               </SheetContent>
             </Sheet>
-            <Link href="/app" className="flex items-center gap-2 font-semibold">
+            <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
               <HeartPulse className="h-5 w-5 text-teal-400" />
               <span className="bg-gradient-to-r from-teal-300 to-emerald-400 bg-clip-text text-transparent">
                 {t("brandTitle")}
